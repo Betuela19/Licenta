@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">DoamneAiMila</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="news">News</string>
+    <string name="descriptiondescriptiondescriptiondes_criptiondescriptiondescriptiondescription">descriptiondescriptiondescriptiondes criptiondescriptiondescriptiondescription</string>
+    <string name="brain">Brain</string>
+    <string name="_34_articles">34 articles</string>
+    <string name="get_started">Get Started</string>
+</resources>
