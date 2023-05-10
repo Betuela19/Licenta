@@ -1,6 +1,5 @@
 package com.masterandroid.doamneaimila.onboarding
 
-import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -11,8 +10,9 @@ import com.masterandroid.doamneaimila.R
 import com.masterandroid.doamneaimila.onboarding.NavigationBar.*
 
 
-class CostumBottomNavBar : AppCompatActivity() {
+ class CostumBottomNavBar : AppCompatActivity() {
     var bottomNav: MeowBottomNavigation? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_costum_bottom_nav_bar)
@@ -37,8 +37,12 @@ class CostumBottomNavBar : AppCompatActivity() {
 
             if (item.id == 1) {
                 fragment = HomeFragment()
+
+
             } else if (item.id == 2) {
                 fragment = ArticlesFragment()
+               /* val intent = Intent(this,Articles::class.java)
+                startActivity(intent)*/
 
             } else if (item.id == 3) {
                 fragment = SearchFragment()

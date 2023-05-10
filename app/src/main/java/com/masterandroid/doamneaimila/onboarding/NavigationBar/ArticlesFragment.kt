@@ -1,61 +1,89 @@
 package com.masterandroid.doamneaimila.onboarding.NavigationBar
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.masterandroid.doamneaimila.LanguageAdapter
+import com.masterandroid.doamneaimila.LanguageData
 import com.masterandroid.doamneaimila.R
+import java.util.*
 
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ArticlesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ArticlesFragment : Fragment() {
 
-    // TODO: Rename and change types of parameters
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var searchView: SearchView
+    private var mList = ArrayList<LanguageData>()
+    private lateinit var adapter: LanguageAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
+
     ): View? {
 
-        // Inflate the layout for this fragment
-       // return inflater.inflate(R.layout.fragment_article, container, false)
-        return inflater.inflate(R.layout.fragment_article, container, false)
+        val view = inflater.inflate(R.layout.fragment_article, container, false)
+
+
+        recyclerView = view.findViewById(R.id.recyclerViewbeti)
+        searchView = view.findViewById(R.id.searchViewbeti)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
+        addDataToList()
+        adapter = LanguageAdapter(mList)
+        recyclerView.adapter = adapter
+
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                searchView.requestFocus()
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                searchView.requestFocus()
+                filterList(newText)
+                return false
+            }
+
+        })
+
+        return view
+    }
+    private fun filterList(query: String?) {
+
+        if (query != null) {
+            val filteredList = ArrayList<LanguageData>()
+            for (i in mList) {
+                if (i.title.lowercase(Locale.ROOT).contains(query)) {
+                    filteredList.add(i)
+                }
+            }
+
+            if (filteredList.isEmpty()) {
+                Toast.makeText(requireContext(), "No Data found", Toast.LENGTH_SHORT).show()
+            } else {
+                adapter.setFilteredList(filteredList)
+            }
+        }
     }
 
-    companion object {
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
-
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment DashboardFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String?, param2: String?): ArticlesFragment {
-            val fragment = ArticlesFragment()
-            val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
-        }
-
-
+    private fun addDataToList() {
+        mList.add(LanguageData("Java", R.drawable.ic_article))
+        mList.add(LanguageData("Kotlin", R.drawable.ic_person))
+        mList.add(LanguageData("C++", R.drawable.ic_home))
 
     }
 

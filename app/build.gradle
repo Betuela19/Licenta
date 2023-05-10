@@ -62,4 +62,5 @@ dependencies {
     //meow
     implementation 'com.etebarian:meow-bottom-navigation-java:1.2.0'
     implementation "androidx.navigation:navigation-fragment:2.3.5"
+    implementation 'com.google.code.gson:gson:2.8.7'
 }

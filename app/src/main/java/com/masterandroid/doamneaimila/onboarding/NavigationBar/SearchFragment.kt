@@ -1,27 +1,28 @@
 package com.masterandroid.doamneaimila.onboarding.NavigationBar
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.TextView
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.masterandroid.doamneaimila.R
+import com.masterandroid.doamneaimila.onboarding.NetworkTask
+import java.io.BufferedReader
+import java.io.InputStreamReader
+import java.net.HttpURLConnection
+import java.net.URL
+import com.google.gson.Gson
+import com.masterandroid.doamneaimila.TestModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [SearchFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class SearchFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var mParam1: String? = null
-    private var mParam2: String? = null
+
+    private lateinit var binding: SearchFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (arguments != null) {
-            mParam1 = arguments!!.getString(ARG_PARAM1)
-            mParam2 = arguments!!.getString(ARG_PARAM2)
-        }
+
     }
 
     override fun onCreateView(
@@ -29,31 +30,53 @@ class SearchFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search, container, false)
-    }
 
-    companion object {
-        // TODO: Rename parameter arguments, choose names that match
-        // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-        private const val ARG_PARAM1 = "param1"
-        private const val ARG_PARAM2 = "param2"
+        val view = inflater.inflate(R.layout.fragment_search, container, false)
 
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SettingsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        fun newInstance(param1: String?, param2: String?): SearchFragment {
-            val fragment = SearchFragment()
-            val args = Bundle()
-            args.putString(ARG_PARAM1, param1)
-            args.putString(ARG_PARAM2, param2)
-            fragment.arguments = args
-            return fragment
+
+        val runnable = Runnable {
+            // Perform the network operation here
+            val result = performNetworkOperation()
+
+            // Update the UI on the main thread
+            activity?.runOnUiThread {
+                updateUI(result)
+            }
         }
+
+        // Start the thread to perform the network operation
+        Thread(runnable).start()
+
+        return view
     }
+
+
+    private fun performNetworkOperation(): String {
+        // Your network operation code goes here
+        val url = URL("https://app-form-recognizer-prod-01.azurewebsites.net/api/azure/formrecognizer/kotlin")
+        val connection = url.openConnection() as HttpURLConnection
+        connection.requestMethod = "GET"
+        val inputStream = connection.inputStream
+        val bufferedReader = BufferedReader(InputStreamReader(inputStream))
+        val stringBuilder = StringBuilder()
+        var line: String?
+        while (bufferedReader.readLine().also { line = it } != null) {
+            stringBuilder.append(line)
+        }
+        bufferedReader.close()
+        inputStream.close()
+        connection.disconnect()
+        return stringBuilder.toString()
+    }
+
+    private fun updateUI(result: String) {
+        // Update the UI with the network result
+
+        val textView = view?.findViewById<TextView>(R.id.Articles)
+        val test = Gson().fromJson(result , TestModel::class.java)
+        textView?.text = test.test
+        println("test : " + test.test)
+        //println("json" + json)
+    }
+
 }
