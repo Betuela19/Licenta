@@ -1,36 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
 
-    <com.google.android.material.button.MaterialButtonToggleGroup
-        android:id="@+id/toggleButton"
+    android:layout_marginLeft="16dp"
+    android:orientation="horizontal"
+    tools:context=".MainActivity">
+
+
+    <Button
+        android:id="@+id/btnOption1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints">
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button 1"
-            />
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button 2"
-            />
-        <Button
-            style="?attr/materialButtonOutlinedStyle"
-            android:id="@+id/button3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Button 3"
-            />
-    </com.google.android.material.button.MaterialButtonToggleGroup>
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="@string/adults"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins"
+        app:cardCornerRadius="10dp"
+        android:textColor="@color/button_text_color" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <Button
+        android:id="@+id/btnOption2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/button_background_color"
+        android:text="@string/children"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins"
+        app:cardCornerRadius="10dp"
+        android:textColor="@color/button_text_color" />
+
+    <Button
+        android:id="@+id/btnOption3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/button_background_color"
+        android:text="@string/eldery"
+        android:textSize="12sp"
+        android:fontFamily="@font/poppins"
+        app:cardCornerRadius="10dp"
+        android:textColor="@color/button_text_color" />
+
+</LinearLayout>

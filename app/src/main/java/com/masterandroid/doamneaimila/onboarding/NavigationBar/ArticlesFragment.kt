@@ -2,6 +2,7 @@ package com.masterandroid.doamneaimila.onboarding.NavigationBar
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
@@ -59,6 +60,29 @@ class ArticlesFragment : Fragment() {
             }
 
         })
+
+        val btn_adults = view.findViewById<Button>(R.id.btnOption1)
+        val btn_children = view.findViewById<Button>(R.id.btnOption2)
+        val btn_eldery = view.findViewById<Button>(R.id.btnOption3)
+
+
+        btn_adults.setOnClickListener {
+            btn_adults.isSelected = !btn_adults.isSelected
+            btn_children.isSelected = false
+            btn_eldery.isSelected = false
+        }
+
+        btn_children.setOnClickListener {
+            btn_children.isSelected = !btn_children.isSelected
+            btn_adults.isSelected = false
+            btn_eldery.isSelected = false
+        }
+
+        btn_eldery.setOnClickListener {
+            btn_eldery.isSelected = !btn_children.isSelected
+            btn_adults.isSelected = false
+            btn_children.isSelected = false
+        }
 
         return view
     }

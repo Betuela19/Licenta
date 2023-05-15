@@ -7,4 +7,8 @@
     <string name="brain">Brain</string>
     <string name="_34_articles">34 articles</string>
     <string name="get_started">Get Started</string>
+    <string name="adults">Adults</string>
+    <string name="children">Children</string>
+    <string name="eldery">Eldery</string>
+    <string name="brain_search">Brain</string>
 </resources>

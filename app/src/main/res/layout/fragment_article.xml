@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="Hi,Kristin"
+        android:text="@string/brain_search"
         android:textColor="@color/third_color"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,7 +67,7 @@
         android:overScrollMode="never"
         android:padding="16dp"
         android:scrollbars="none"
-        app:layout_constraintBottom_toTopOf="@id/options"
+        app:layout_constraintBottom_toTopOf="@id/category"
         app:layout_constraintTop_toBottomOf="@id/materialCardView"
         tools:layout_editor_absoluteX="0dp">
 
@@ -76,11 +76,11 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
-            <include layout="@layout/dashboard_item_horizontal_1" />
+            <include layout="@layout/articles_item_horizontal_1" />
 
-            <include layout="@layout/dashboard_item_horizontal_2" />
+            <include layout="@layout/articles_item_horizontal_2" />
 
-            <include layout="@layout/dashboard_item_horizontal_3" />
+            <include layout="@layout/articles_item_horizontal_3" />
 
         </LinearLayout>
     </HorizontalScrollView>
@@ -90,10 +90,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@+id/horizontal"
+        app:layout_constraintTop_toBottomOf="@+id/category"
        >
 
-        <include layout="@layout/toggle_buttons"/>
+        <include layout="@layout/toggle_buttons" />
 
     </LinearLayout>
 
@@ -104,10 +104,28 @@
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/options"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintVertical_bias="0.0">
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose your category"
+        android:textColor="@color/third_color"
+        android:fontFamily="@font/poppins"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="16dp"
+
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/options"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/horizontal"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
