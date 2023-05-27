@@ -57,6 +57,10 @@ import com.masterandroid.doamneaimila.onboarding.NavigationBar.*
         })
         //set initial selected fragment
         meowBottomNav.show(3, true)
+        val selectedItem = intent.getIntExtra("selectedItem", 3) // Default to item 1 if not provided
+
+        // Set initial selected fragment based on the selected item index
+        meowBottomNav.show(selectedItem, true)
         // set menu item on click
         meowBottomNav.setOnClickMenuListener(ClickListener { item -> //display something
             //Toast.makeText(applicationContext, "You clicked" + item.id, Toast.LENGTH_SHORT).show()

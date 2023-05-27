@@ -1,16 +1,23 @@
 package com.masterandroid.doamneaimila.onboarding.NavigationBar
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
+import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat.getSystemService
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.masterandroid.doamneaimila.LanguageAdapter
 import com.masterandroid.doamneaimila.LanguageData
 import com.masterandroid.doamneaimila.R
+import com.masterandroid.doamneaimila.onboarding.screens.FilterPage
 import java.util.*
 
 
@@ -35,28 +42,28 @@ class ArticlesFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_article, container, false)
 
-
         recyclerView = view.findViewById(R.id.recyclerViewbeti)
         searchView = view.findViewById(R.id.searchViewbeti)
+        searchView.setOnFocusChangeListener { _, hasFocus ->
+            if (hasFocus) {
+                showKeyboard()
+            }
+        }
 
         recyclerView.setHasFixedSize(true)
-        recyclerView.layoutManager = LinearLayoutManager(this.requireContext())
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
         addDataToList()
         adapter = LanguageAdapter(mList)
         recyclerView.adapter = adapter
 
-
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-
             override fun onQueryTextSubmit(query: String?): Boolean {
-                searchView.requestFocus()
                 return false
             }
 
             override fun onQueryTextChange(newText: String?): Boolean {
-                searchView.requestFocus()
                 filterList(newText)
-                return false
+                return true
             }
 
         })
@@ -84,18 +91,24 @@ class ArticlesFragment : Fragment() {
             btn_children.isSelected = false
         }
 
+        val filterIcon = view.findViewById<ImageView>(R.id.filterIcon)
+
+        filterIcon.setOnClickListener {
+            val intent = Intent(activity, FilterPage::class.java)
+            startActivity(intent)
+        }
+
         return view
     }
+
+    private fun showKeyboard() {
+        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        inputMethodManager.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT)
+    }
+
     private fun filterList(query: String?) {
-
         if (query != null) {
-            val filteredList = ArrayList<LanguageData>()
-            for (i in mList) {
-                if (i.title.lowercase(Locale.ROOT).contains(query)) {
-                    filteredList.add(i)
-                }
-            }
-
+            val filteredList = mList.filter { it.title.lowercase(Locale.ROOT).contains(query) }
             if (filteredList.isEmpty()) {
                 Toast.makeText(requireContext(), "No Data found", Toast.LENGTH_SHORT).show()
             } else {
@@ -104,7 +117,7 @@ class ArticlesFragment : Fragment() {
         }
     }
 
-    private fun addDataToList() {
+private fun addDataToList() {
         mList.add(LanguageData("Java", R.drawable.ic_article))
         mList.add(LanguageData("Kotlin", R.drawable.ic_person))
         mList.add(LanguageData("C++", R.drawable.ic_home))

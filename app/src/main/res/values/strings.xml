@@ -11,4 +11,9 @@
     <string name="children">Children</string>
     <string name="eldery">Eldery</string>
     <string name="brain_search">Brain</string>
+
+    <string-array name="rangeSlider">
+        <item>20</item>
+        <item>70</item>
+    </string-array>
 </resources>

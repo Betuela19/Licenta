@@ -153,8 +153,9 @@
                             android:fontFamily="@font/poppins"
                             android:text="Or sign in with"
                             android:textColor="@color/grey"
-                            tools:layout_editor_absoluteX="143dp"
-                            tools:layout_editor_absoluteY="348dp" />
+                            app:layout_constraintBottom_toTopOf="@+id/facebook_icon"
+                            app:layout_constraintTop_toBottomOf="@+id/sigIn_button"
+                            tools:layout_editor_absoluteX="143dp" />
 
                         <LinearLayout
                             android:id="@+id/dont_have_account"
