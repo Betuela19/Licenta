@@ -15,6 +15,9 @@
         android:theme="@style/Theme.DoamneAiMila"
         tools:targetApi="31">
         <activity
+            android:name=".onboarding.DeseasePage"
+            android:exported="false" />
+        <activity
             android:name=".onboarding.Results"
             android:exported="true" />
         <activity

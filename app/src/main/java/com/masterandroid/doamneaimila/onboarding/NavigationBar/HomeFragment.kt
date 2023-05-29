@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.github.mikephil.charting.charts.BarChart
 import com.masterandroid.doamneaimila.R
+import com.masterandroid.doamneaimila.onboarding.DeseasePage
 import com.masterandroid.doamneaimila.onboarding.Results
 
 
@@ -39,7 +40,7 @@ class HomeFragment : Fragment() {
     }
 
     private fun openActivity() {
-        val intent = Intent(activity, Results::class.java)
+        val intent = Intent(activity, DeseasePage::class.java)
         startActivity(intent)
     }
 

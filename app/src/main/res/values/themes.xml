@@ -42,6 +42,19 @@
     </style>
 
 
+    <style name="Round_Image_button" parent="Widget.MaterialComponents.TimePicker.ImageButton">
+        <item name="shapeAppearanceOverlay">@style/round_image_button</item>
+    </style>
+
+    <style name="round_image_button" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">48dp</item>
+        <item name="cornerSizeTopLeft">48dp</item>
+        <item name="cornerSizeBottomLeft">48dp</item>
+        <item name="cornerSizeBottomRight">48dp</item>
+    </style>
+
+
     <style name="costum_card_view_style" parent="Widget.MaterialComponents.CardView">
         <item name="shapeAppearanceOverlay">@style/costum_card_view</item>
     </style>

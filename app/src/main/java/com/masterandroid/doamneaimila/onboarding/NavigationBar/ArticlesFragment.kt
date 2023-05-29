@@ -44,11 +44,7 @@ class ArticlesFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.recyclerViewbeti)
         searchView = view.findViewById(R.id.searchViewbeti)
-        searchView.setOnFocusChangeListener { _, hasFocus ->
-            if (hasFocus) {
-                showKeyboard()
-            }
-        }
+
 
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
