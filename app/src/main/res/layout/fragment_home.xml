@@ -6,19 +6,189 @@
     android:layout_height="match_parent"
     tools:context=".onboarding.NavigationBar.HomeFragment">
 
-   <View
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:background="@color/secondary_color"/>
-
-   <Button
-       android:id="@+id/homebtn"
+   <androidx.constraintlayout.widget.Guideline
+       android:id="@+id/guideline2"
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
-       android:text="Button"
-       app:layout_constraintBottom_toBottomOf="parent"
+       android:orientation="horizontal"
+       app:layout_constraintGuide_begin="183dp" />
+
+   <View
+       android:id="@+id/viewHeaderBackground"
+       android:layout_width="408dp"
+       android:layout_height="182dp"
+       android:background="@color/primary_color"
        app:layout_constraintEnd_toEndOf="parent"
        app:layout_constraintStart_toStartOf="parent"
        app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:id="@+id/textTitle"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="44dp"
+       android:fontFamily="@font/poppins_bold"
+       android:text="Hi,Kristin"
+       android:textColor="@color/white"
+       android:textSize="24dp"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.096"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <TextView
+       android:id="@+id/textSubTitle"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:fontFamily="@font/poppins"
+       android:text="Let's focus on your health!"
+       android:textColor="@color/white"
+       android:textSize="14sp"
+       app:layout_constraintBottom_toTopOf="@+id/cardHeader"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.126"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@+id/textTitle"
+       app:layout_constraintVertical_bias="0.0" />
+
+   <ImageView
+       android:id="@+id/imageView6"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="44dp"
+       android:src="@drawable/avatar"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintHorizontal_bias="0.822"
+       app:layout_constraintStart_toEndOf="@+id/textTitle"
+       app:layout_constraintTop_toTopOf="parent" />
+
+   <com.google.android.material.card.MaterialCardView
+       android:id="@+id/cardHeader"
+       android:layout_width="335dp"
+       android:layout_height="96dp"
+       app:cardBackgroundColor="@color/white"
+       app:cardCornerRadius="16dp"
+       app:layout_constraintBottom_toBottomOf="@+id/viewHeaderBackground"
+       app:layout_constraintEnd_toEndOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/viewHeaderBackground"
+       app:layout_constraintVertical_bias="0.447">
+
+      <androidx.constraintlayout.widget.ConstraintLayout
+
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="14dp"
+          android:elevation="10dp">
+
+         <TextView
+             android:id="@+id/RecentlyViewed"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:fontFamily="@font/poppins"
+             android:text="Recently viewed"
+             android:textColor="@color/grey"
+             android:textSize="12sp"
+
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+
+         <TextView
+             android:id="@+id/Saved"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:fontFamily="@font/poppins"
+             android:text="Saved"
+             android:textColor="@color/primary_color"
+             android:textSize="12sp"
+             app:layout_constraintEnd_toEndOf="parent"
+             app:layout_constraintTop_toTopOf="parent" />
+
+         <TextView
+             android:id="@+id/Articles"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginStart="4dp"
+             android:layout_marginTop="28dp"
+             android:fontFamily="@font/poppins_bold"
+             android:text="4 articles"
+             android:textColor="@color/third_color"
+             android:textSize="20sp"
+             app:layout_constraintStart_toStartOf="parent"
+             app:layout_constraintTop_toTopOf="@id/RecentlyViewed" />
+
+
+      </androidx.constraintlayout.widget.ConstraintLayout>
+
+   </com.google.android.material.card.MaterialCardView>
+
+   <TextView
+       android:id="@+id/popular_topics"
+       android:layout_width="415dp"
+       android:layout_height="25dp"
+       android:layout_marginLeft="16dp"
+
+       android:fontFamily="@font/poppins"
+       android:text="Popular Topics"
+       android:textColor="@color/third_color"
+       android:textSize="15sp"
+       android:textStyle="bold"
+       app:layout_constraintBottom_toTopOf="@id/vertical"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/horizontal" />
+
+   <HorizontalScrollView
+       android:id="@+id/horizontal"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:clipToPadding="false"
+       android:overScrollMode="never"
+       android:padding="16dp"
+       android:scrollbars="none"
+       app:layout_constraintBottom_toTopOf="@id/popular_topics"
+       app:layout_constraintTop_toBottomOf="@id/cardHeader"
+       tools:layout_editor_absoluteX="0dp">
+
+      <LinearLayout
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:orientation="horizontal">
+
+         <include layout="@layout/dashboard_item_horizontal_1" />
+
+         <include layout="@layout/dashboard_item_horizontal_2" />
+
+         <include layout="@layout/dashboard_item_horizontal_3" />
+
+      </LinearLayout>
+   </HorizontalScrollView>
+
+   <ScrollView
+       android:id="@+id/vertical"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:clipToPadding="false"
+       android:overScrollMode="always"
+       android:padding="16dp"
+       android:scrollbars="vertical"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintTop_toBottomOf="@id/popular_topics">
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical">
+
+         <include layout="@layout/dashboard_item_vertical_1"/>
+         <include layout="@layout/dashboard_item_vertical_2"/>
+         <include layout="@layout/dashboard_item_vertical_3"/>
+         <include layout="@layout/dashboard_item_vertical_4"/>
+
+         <include layout="@layout/dashboard_item_vertical_1" />
+
+      </LinearLayout>
+
+   </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

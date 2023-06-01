@@ -12,6 +12,7 @@ import com.google.android.material.slider.RangeSlider
 import com.masterandroid.doamneaimila.R
 import com.masterandroid.doamneaimila.onboarding.CostumBottomNavBar
 import com.masterandroid.doamneaimila.onboarding.NavigationBar.ArticlesFragment
+import com.masterandroid.doamneaimila.onboarding.Results
 import java.text.NumberFormat
 import java.util.*
 
@@ -38,7 +39,7 @@ class FilterPage : AppCompatActivity() {
             // Close the bottom sheet
             dialog.dismiss()
             //navigateToFragment()
-            navigateToOtherActivity()
+            navigateToResults()
         }
 
         // Adjust dialog behavior to expand to full height
@@ -55,6 +56,12 @@ class FilterPage : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+    private fun navigateToResults() {
+        val intent = Intent(this, Results::class.java)
+        startActivity(intent)
+        finish()
+    }
+
 
 
     private fun navigateToFragment() {

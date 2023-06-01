@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.inputmethod.InputMethodManager
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -17,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.masterandroid.doamneaimila.LanguageAdapter
 import com.masterandroid.doamneaimila.LanguageData
 import com.masterandroid.doamneaimila.R
+import com.masterandroid.doamneaimila.onboarding.CostumBottomNavBar
+import com.masterandroid.doamneaimila.onboarding.Results
 import com.masterandroid.doamneaimila.onboarding.screens.FilterPage
 import java.util.*
 
@@ -24,7 +27,7 @@ import java.util.*
 class ArticlesFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
-    private lateinit var searchView: SearchView
+    private lateinit var searchView: ImageButton
     private var mList = ArrayList<LanguageData>()
     private lateinit var adapter: LanguageAdapter
 
@@ -43,7 +46,7 @@ class ArticlesFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_article, container, false)
 
         recyclerView = view.findViewById(R.id.recyclerViewbeti)
-        searchView = view.findViewById(R.id.searchViewbeti)
+        searchView = view.findViewById(R.id.searchBtn)
 
 
         recyclerView.setHasFixedSize(true)
@@ -52,7 +55,10 @@ class ArticlesFragment : Fragment() {
         adapter = LanguageAdapter(mList)
         recyclerView.adapter = adapter
 
-        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+        searchView.setOnClickListener{
+            navigateToOtherActivity()
+        }
+      /*  searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 return false
             }
@@ -62,7 +68,7 @@ class ArticlesFragment : Fragment() {
                 return true
             }
 
-        })
+        })*/
 
         val btn_adults = view.findViewById<Button>(R.id.btnOption1)
         val btn_children = view.findViewById<Button>(R.id.btnOption2)
@@ -85,13 +91,6 @@ class ArticlesFragment : Fragment() {
             btn_eldery.isSelected = !btn_children.isSelected
             btn_adults.isSelected = false
             btn_children.isSelected = false
-        }
-
-        val filterIcon = view.findViewById<ImageView>(R.id.filterIcon)
-
-        filterIcon.setOnClickListener {
-            val intent = Intent(activity, FilterPage::class.java)
-            startActivity(intent)
         }
 
         return view
@@ -119,6 +118,13 @@ private fun addDataToList() {
         mList.add(LanguageData("C++", R.drawable.ic_home))
 
     }
+
+    private fun navigateToOtherActivity() {
+        val intent = Intent(requireContext(), Results::class.java)
+        startActivity(intent)
+        requireActivity().finish()
+    }
+
 
 }
 

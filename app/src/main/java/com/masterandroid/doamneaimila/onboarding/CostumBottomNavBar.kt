@@ -24,12 +24,12 @@ import com.masterandroid.doamneaimila.onboarding.NavigationBar.*
 
         meowBottomNav.add(MeowBottomNavigation.Model(1, R.drawable.ic_home))
         meowBottomNav.add(MeowBottomNavigation.Model(2, R.drawable.ic_article))
-        meowBottomNav.add(MeowBottomNavigation.Model(3, R.drawable.ic_search))
+        meowBottomNav.add(MeowBottomNavigation.Model(3, R.drawable.ic_favourite_2))
         meowBottomNav.add(MeowBottomNavigation.Model(4, R.drawable.ic_graph))
         meowBottomNav.add(MeowBottomNavigation.Model(5, R.drawable.ic_person))
 
         //set count to dashboard item
-        meowBottomNav.setCount(3, "")
+        meowBottomNav.setCount(1, "")
 
         //set bottom nav on show listener
         meowBottomNav.setOnShowListener(ShowListener { item -> //initialize fragment
@@ -56,19 +56,14 @@ import com.masterandroid.doamneaimila.onboarding.NavigationBar.*
             loadFragment(fragment)
         })
         //set initial selected fragment
-        meowBottomNav.show(3, true)
-        val selectedItem = intent.getIntExtra("selectedItem", 3) // Default to item 1 if not provided
+        meowBottomNav.show(1, true)
+        val selectedItem = intent.getIntExtra("selectedItem", 1) // Default to item 1 if not provided
 
         // Set initial selected fragment based on the selected item index
         meowBottomNav.show(selectedItem, true)
         // set menu item on click
         meowBottomNav.setOnClickMenuListener(ClickListener { item -> //display something
             //Toast.makeText(applicationContext, "You clicked" + item.id, Toast.LENGTH_SHORT).show()
-            if(item.id == 1)
-            {
-                Toast.makeText(applicationContext, "Home" , Toast.LENGTH_SHORT).show()
-            }
-
         })
         //set on reselect
        meowBottomNav.setOnReselectListener(ReselectListener { item ->

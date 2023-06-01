@@ -54,14 +54,27 @@ class Results : AppCompatActivity() {
         backButton.setOnClickListener {
             navigateToOtherActivity()
         }
+
+        val filterIcon = findViewById<ImageView>(R.id.filterIcon)
+
+        filterIcon.setOnClickListener {
+            navigateToFilter()
+        }
     }
 
-    private fun navigateToOtherActivity() {
+    private fun navigateToFilter() {
         val intent = Intent(this, FilterPage::class.java)
-
         startActivity(intent)
         finish()
     }
+
+    private fun navigateToOtherActivity() {
+        val intent = Intent(this, CostumBottomNavBar::class.java)
+        intent.putExtra("selectedItem", 2) // Set the selected item to 2 (ArticlesFragment)
+        startActivity(intent)
+        finish()
+    }
+
 
     private fun filterList(query: String?) {
 
