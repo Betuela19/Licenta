@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".onboarding.NavigationBar.SearchFragment">
+    tools:context=".onboarding.NavigationBar.FavouritesFragment">
 
     <TextView
         android:id="@+id/my_articles_title"
@@ -159,7 +159,7 @@
                 android:layout_marginTop="15dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/red"
+                app:cardBackgroundColor="@color/primary_color"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -195,13 +195,13 @@
                     <TextView
 
                         android:id="@+id/textView23"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="31dp"
+                        android:layout_height="24dp"
 
                         android:fontFamily="@font/poppins"
-                        android:text="Copii"
+                        android:text="Children"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView18" />
@@ -213,9 +213,9 @@
                         android:layout_height="wrap_content"
 
                         android:fontFamily="@font/poppins"
-                        android:text="Rinichi"
+                        android:text="Kidney"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView19" />
@@ -226,7 +226,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Hidronefroza"
+                        android:text="Renal Tubular Acidosis"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -243,7 +243,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/pink"
+                app:cardBackgroundColor="@color/primary_color"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -283,9 +283,9 @@
                         android:layout_height="wrap_content"
 
                         android:fontFamily="@font/poppins"
-                        android:text="Copii"
+                        android:text="Eldery"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView25" />
@@ -298,9 +298,9 @@
 
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Creier"
+                        android:text="Brain"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView24" />
@@ -312,7 +312,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Encelofalie"
+                        android:text="Alzheimer"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -329,7 +329,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/eyes_blue"
+                app:cardBackgroundColor="@color/primary_color"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -369,9 +369,9 @@
                         android:layout_height="wrap_content"
 
                         android:fontFamily="@font/poppins"
-                        android:text="Copii"
+                        android:text="Adults"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView27" />
@@ -382,9 +382,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Ochi"
+                        android:text="Eyes"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView26" />
@@ -394,7 +394,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Hipermetropie"
+                        android:text="Astigmatism"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -411,7 +411,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/light_green"
+                app:cardBackgroundColor="@color/primary_color"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -451,9 +451,9 @@
                         android:layout_height="wrap_content"
 
                         android:fontFamily="@font/poppins"
-                        android:text="Copii"
+                        android:text="Adults"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView30" />
@@ -464,9 +464,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Plamani"
+                        android:text="Lungs"
                         android:textColor="@color/white"
-                        android:textSize="10sp"
+                        android:textSize="11sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView28" />
@@ -478,7 +478,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Pneumonie"
+                        android:text="Asthma"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -496,7 +496,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_marginBottom="10dp"
                 android:elevation="10dp"
-                app:cardBackgroundColor="@color/nude"
+                app:cardBackgroundColor="@color/primary_color"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="3dp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -535,7 +535,7 @@
                         android:layout_height="wrap_content"
 
                         android:fontFamily="@font/poppins"
-                        android:text="Copii"
+                        android:text="Children"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -550,7 +550,7 @@
 
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Urechi"
+                        android:text="Ears"
                         android:textColor="@color/white"
                         android:textSize="10sp"
                         android:textStyle="bold"
@@ -564,7 +564,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_bold"
-                        android:text="Otomicoza"
+                        android:text="Otitis"
                         android:textColor="@color/white"
                         android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="parent"

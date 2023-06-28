@@ -45,12 +45,12 @@ class StatisticsFragment : Fragment() {
             pieEntries.add(pieEntry)
         }
 
-        val barDataSet = BarDataSet(barEntries, "Employees")
+        val barDataSet = BarDataSet(barEntries, "Health rate")
 //Set colors
         barDataSet.colors = ColorTemplate.COLORFUL_COLORS.asList()
         barDataSet.setDrawValues(false)
 
-        val pieDataSet = PieDataSet(pieEntries, "Students")
+        val pieDataSet = PieDataSet(pieEntries, "Health rate")
         pieDataSet.colors = ColorTemplate.COLORFUL_COLORS.asList()
 
         barChart.data = BarData(barDataSet)

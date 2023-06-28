@@ -42,9 +42,12 @@ class LogIn : AppCompatActivity() {
     private fun validEmail(): String?
     {
 
-        if(binding.inputEmailLogIn.text.toString() != "user")
+        if(binding.inputEmailLogIn.text.toString() != "coroama.betuela@gmail.com")
         {
             return "Wrong Email Address"
+        }else if (binding.inputEmailLogIn.text.toString() == "")
+        {
+            return "Email required"
         }
         return null
     }
@@ -65,6 +68,8 @@ class LogIn : AppCompatActivity() {
         if(binding.inputPasswordLogIn.text.toString() != "1234")
         {
             return "Wrong Password"
+        }else if(binding.inputPasswordLogIn.text.toString() == ""){
+            return "Password required"
         }
         return null
     }

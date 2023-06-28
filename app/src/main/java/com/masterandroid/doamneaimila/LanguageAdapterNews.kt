@@ -7,14 +7,15 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
-class LanguageAdapter(
-    private var mList: List<LanguageData>,
-    private val onItemClick: (selectedLanguage: LanguageData) -> Unit
-) : RecyclerView.Adapter<LanguageAdapter.LanguageViewHolder>() {
+class LanguageAdapterNews(
+    private var mList: List<LanguageDataNews>,
+    private val onItemClick: (LanguageDataNews) -> Unit
+) : RecyclerView.Adapter<LanguageAdapterNews.LanguageViewHolder>() {
 
     inner class LanguageViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val logo: ImageView = itemView.findViewById(R.id.logoIv)
-        val titleTv: TextView = itemView.findViewById(R.id.titleTv)
+        val logoNews: ImageView = itemView.findViewById(R.id.LogoNews)
+        val newsTitle: TextView = itemView.findViewById(R.id.newsTitleHome)
+        val newsDescription: TextView = itemView.findViewById(R.id.DescriptionNewsHome)
 
         init {
             itemView.setOnClickListener {
@@ -27,7 +28,7 @@ class LanguageAdapter(
         }
     }
 
-    fun setFilteredList(mList: List<LanguageData>){
+    fun setFilteredList(mList: List<LanguageDataNews>){
         this.mList = mList
         notifyDataSetChanged()
     }
@@ -36,7 +37,7 @@ class LanguageAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LanguageViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.each_item_search,
+            R.layout.dashboard_item_vertical_1,
             parent,
             false
         )
@@ -45,8 +46,9 @@ class LanguageAdapter(
 
     override fun onBindViewHolder(holder: LanguageViewHolder, position: Int) {
         val languageData = mList[position]
-        holder.logo.setImageResource(languageData.logo)
-        holder.titleTv.text = languageData.title
+        holder.logoNews.setImageResource(languageData.logo)
+        holder.newsTitle.text = languageData.title
+        holder.newsDescription.text = languageData.description
     }
 
     override fun getItemCount(): Int {

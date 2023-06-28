@@ -92,7 +92,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="ceva foarte lung " />
+                    android:text="lungs" />
 
             </LinearLayout>
 
@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:paddingEnd="5dp"
-                    android:text="brain" />
+                    android:text="kidney" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip5"
@@ -116,7 +116,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="hearth" />
+                    android:text="bones" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip6"
@@ -124,7 +124,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="ceva foarte lung " />
+                    android:text="ligaments" />
 
             </LinearLayout>
 
@@ -208,7 +208,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
                     android:paddingEnd="5dp"
-                    android:text="brain" />
+                    android:text="adults" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip9"
@@ -216,7 +216,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="hearth" />
+                    android:text="children" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip10"
@@ -224,39 +224,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:text="ceva foarte lung " />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip11"
-                    style="@style/CostumChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:paddingEnd="5dp"
-                    android:text="brain" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip12"
-                    style="@style/CostumChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="hearth" />
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chip13"
-                    style="@style/CostumChipStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="10dp"
-                    android:text="ceva foarte lung " />
+                    android:text="eldery" />
 
             </LinearLayout>
 

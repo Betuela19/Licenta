@@ -6,13 +6,19 @@ import android.os.Bundle
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.masterandroid.doamneaimila.GetDiseaseResponse
 import com.masterandroid.doamneaimila.LanguageAdapter
 import com.masterandroid.doamneaimila.LanguageData
 import com.masterandroid.doamneaimila.R
 import com.masterandroid.doamneaimila.R.id.searchViewResult
 import com.masterandroid.doamneaimila.onboarding.screens.FilterPage
+import okhttp3.*
+import java.io.IOException
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,7 +39,12 @@ class Results : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         addDataToList()
-        adapter = LanguageAdapter(mList)
+        adapter = LanguageAdapter(mList) { selectedLanguage ->
+            // Handle item click event here
+            val intent = Intent(this, DeseasePage::class.java)
+            startActivity(intent)
+        }
+
         recyclerView.adapter = adapter
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
@@ -95,9 +106,37 @@ class Results : AppCompatActivity() {
     }
 
     private fun addDataToList() {
-        mList.add(LanguageData("Java", R.drawable.ic_person))
-        mList.add(LanguageData("Kotlin", R.drawable.ic_article))
-        mList.add(LanguageData("C++", R.drawable.ic_graph))
+        val url = "https://bwaremobileapi.azurewebsites.net/Disease/get/all"
+        val request = Request.Builder().url(url).build()
+
+        println(request)
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?) {
+                val body = response?.body()?.string()
+                // println(body)
+
+                val listType = object : TypeToken<List<GetDiseaseResponse>>() {}.type
+                val diseaseResponse: List<GetDiseaseResponse> = Gson().fromJson(body, listType)
+
+                val tempList = java.util.ArrayList<LanguageData>()
+                for (disease in diseaseResponse){
+                    println(disease.name)
+                    tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                }
+
+                this@Results.runOnUiThread {
+                    mList.addAll(tempList)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                println("Failed to execute request")
+                e?.printStackTrace()
+            }
+        })
     }
 
 }

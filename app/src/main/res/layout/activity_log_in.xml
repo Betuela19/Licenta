@@ -51,7 +51,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginHorizontal="20dp"
                             android:layout_marginTop="16dp"
-                            app:helperText="required"
+
                             app:helperTextTextColor="@android:color/holo_red_dark"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -125,7 +125,7 @@
                             android:layout_marginTop="20dp"
                             app:counterEnabled="true"
                             app:counterMaxLength="16"
-                            app:helperText="required"
+
                             app:helperTextTextColor="@android:color/holo_red_dark"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintHorizontal_bias="0.6"
@@ -150,12 +150,13 @@
                             android:id="@+id/textView13"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginStart="140dp"
                             android:fontFamily="@font/poppins"
                             android:text="Or sign in with"
                             android:textColor="@color/grey"
                             app:layout_constraintBottom_toTopOf="@+id/facebook_icon"
-                            app:layout_constraintTop_toBottomOf="@+id/sigIn_button"
-                            tools:layout_editor_absoluteX="143dp" />
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/sigIn_button" />
 
                         <LinearLayout
                             android:id="@+id/dont_have_account"

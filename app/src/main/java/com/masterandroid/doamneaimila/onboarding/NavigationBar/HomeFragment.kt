@@ -6,25 +6,32 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.github.mikephil.charting.charts.BarChart
 import com.google.gson.Gson
-import com.masterandroid.doamneaimila.R
-import com.masterandroid.doamneaimila.TestModel
+import com.masterandroid.doamneaimila.*
 import com.masterandroid.doamneaimila.onboarding.CostumBottomNavBar
 import com.masterandroid.doamneaimila.onboarding.DeseasePage
+import com.masterandroid.doamneaimila.onboarding.NewsPage
 import com.masterandroid.doamneaimila.onboarding.Results
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
+import java.util.ArrayList
 
 
 class HomeFragment : Fragment() {
     private lateinit var binding: HomeFragment
     private lateinit var saved_items: TextView
+    private lateinit var recyclerView: RecyclerView
+    private var mList = ArrayList<LanguageDataNews>()
+    private lateinit var adapter: LanguageAdapterNews
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -37,6 +44,21 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+
+        recyclerView = view.findViewById(R.id.recyclerView_HomePage)
+
+        recyclerView.setHasFixedSize(true)
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        addDataToList()
+
+        adapter = LanguageAdapterNews(mList) { selectedLanguage ->
+            // Handle item click event here
+            val intent = Intent(requireContext(), NewsPage::class.java)
+            startActivity(intent)
+        }
+
+        recyclerView.adapter = adapter
 
 
         val runnable = Runnable {
@@ -65,6 +87,21 @@ class HomeFragment : Fragment() {
         return view
     }
 
+    private fun addDataToList() {
+        mList.add(LanguageDataNews("Influenced by light, biological rhythms say a lot about health",
+            "Life patterns help humans and other animals stay in sync with nature and in good form.",
+            R.drawable.ic_article))
+
+        mList.add(LanguageDataNews("Brain disorders trigger search for new clues and cures",
+            "Scientists are refining their understanding of neural networks and sharpening diagnoses. ",
+            R.drawable.ic_article))
+
+        mList.add(LanguageDataNews("The race to make hospitals cybersecure",
+            "As medical centres increasingly come under attack from hackers, Europe is bolstering protection.",
+            R.drawable.ic_article))
+
+
+    }
 
     private fun performNetworkOperation(): String {
         // Your network operation code goes here

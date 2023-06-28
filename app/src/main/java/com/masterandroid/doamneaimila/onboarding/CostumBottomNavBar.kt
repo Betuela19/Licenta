@@ -45,7 +45,7 @@ import com.masterandroid.doamneaimila.onboarding.NavigationBar.*
                 startActivity(intent)*/
 
             } else if (item.id == 3) {
-                fragment = SearchFragment()
+                fragment = FavouritesFragment()
             }else if (item.id == 4) {
                 fragment = StatisticsFragment()
             }else if (item.id == 5) {

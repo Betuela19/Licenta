@@ -1,26 +1,20 @@
 package com.masterandroid.doamneaimila.onboarding.NavigationBar
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
-import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.widget.SearchView
-import androidx.core.content.ContextCompat.getSystemService
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.masterandroid.doamneaimila.LanguageAdapter
-import com.masterandroid.doamneaimila.LanguageData
-import com.masterandroid.doamneaimila.R
-import com.masterandroid.doamneaimila.onboarding.CostumBottomNavBar
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import com.masterandroid.doamneaimila.*
+import com.masterandroid.doamneaimila.onboarding.DeseasePage
 import com.masterandroid.doamneaimila.onboarding.Results
-import com.masterandroid.doamneaimila.onboarding.screens.FilterPage
+import okhttp3.*
+import java.io.IOException
 import java.util.*
 
 
@@ -49,26 +43,23 @@ class ArticlesFragment : Fragment() {
         searchView = view.findViewById(R.id.searchBtn)
 
 
-        recyclerView.setHasFixedSize(true)
+       recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         addDataToList()
-        adapter = LanguageAdapter(mList)
+
+        adapter = LanguageAdapter(mList) { selectedLanguage ->
+            val position = mList.indexOf(selectedLanguage)
+            println(selectedLanguage.title)
+            val intent = Intent(requireContext(), DeseasePage::class.java)
+            intent.putExtra("position", position)
+            startActivity(intent)
+        }
+
         recyclerView.adapter = adapter
 
         searchView.setOnClickListener{
             navigateToOtherActivity()
         }
-      /*  searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                filterList(newText)
-                return true
-            }
-
-        })*/
 
         val btn_adults = view.findViewById<Button>(R.id.btnOption1)
         val btn_children = view.findViewById<Button>(R.id.btnOption2)
@@ -93,30 +84,44 @@ class ArticlesFragment : Fragment() {
             btn_children.isSelected = false
         }
 
+
         return view
     }
 
-    private fun showKeyboard() {
-        val inputMethodManager = requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        inputMethodManager.showSoftInput(searchView, InputMethodManager.SHOW_IMPLICIT)
-    }
-
-    private fun filterList(query: String?) {
-        if (query != null) {
-            val filteredList = mList.filter { it.title.lowercase(Locale.ROOT).contains(query) }
-            if (filteredList.isEmpty()) {
-                Toast.makeText(requireContext(), "No Data found", Toast.LENGTH_SHORT).show()
-            } else {
-                adapter.setFilteredList(filteredList)
-            }
-        }
-    }
 
 private fun addDataToList() {
-        mList.add(LanguageData("Java", R.drawable.ic_article))
-        mList.add(LanguageData("Kotlin", R.drawable.ic_person))
-        mList.add(LanguageData("C++", R.drawable.ic_home))
 
+        val url = "https://bwaremobileapi.azurewebsites.net/Disease/get/all"
+        val request = Request.Builder().url(url).build()
+
+        println(request)
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?) {
+                val body = response?.body()?.string()
+               // println(body)
+
+                val listType = object : TypeToken<List<GetDiseaseResponse>>() {}.type
+                val diseaseResponse: List<GetDiseaseResponse> = Gson().fromJson(body, listType)
+
+                val tempList = ArrayList<LanguageData>()
+                for (disease in diseaseResponse){
+                    println(disease.name)
+                    tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                }
+
+                activity?.runOnUiThread {
+                    mList.addAll(tempList)
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                println("Failed to execute request")
+                e?.printStackTrace()
+            }
+        })
     }
 
     private fun navigateToOtherActivity() {
