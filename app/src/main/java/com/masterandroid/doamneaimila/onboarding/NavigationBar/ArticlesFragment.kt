@@ -66,22 +66,154 @@ class ArticlesFragment : Fragment() {
         val btn_eldery = view.findViewById<Button>(R.id.btnOption3)
 
 
+        if(btn_adults.isSelected == false && btn_children.isSelected == false && btn_eldery.isSelected == false)
+        {
+            mList.clear()
+
+            addDataToList()
+        }
+
         btn_adults.setOnClickListener {
             btn_adults.isSelected = !btn_adults.isSelected
             btn_children.isSelected = false
             btn_eldery.isSelected = false
+
+
+            mList.clear()
+
+            if(btn_adults.isSelected == false && btn_children.isSelected == false && btn_eldery.isSelected == false)
+            {
+                mList.clear()
+
+                addDataToList()
+            }
+
+            val url = "https://bwaremobileapi.azurewebsites.net/Disease/get/organ/category?category=2"
+            val request = Request.Builder().url(url).build()
+
+            println(request)
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object: Callback {
+                override fun onResponse(call: Call?, response: Response?) {
+                    val body = response?.body()?.string()
+                    // println(body)
+
+                    val listType = object : TypeToken<List<GetDiseaseResponse>>() {}.type
+                    val diseaseResponse: List<GetDiseaseResponse> = Gson().fromJson(body, listType)
+
+                    val tempList = ArrayList<LanguageData>()
+                    for (disease in diseaseResponse){
+                        println(disease.name)
+                        tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                    }
+
+                    activity?.runOnUiThread {
+                        mList.addAll(tempList)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onFailure(call: Call?, e: IOException?) {
+                    println("Failed to execute request")
+                    e?.printStackTrace()
+                }
+            })
+
         }
 
         btn_children.setOnClickListener {
             btn_children.isSelected = !btn_children.isSelected
             btn_adults.isSelected = false
             btn_eldery.isSelected = false
+
+            mList.clear()
+
+            if(btn_adults.isSelected == false && btn_children.isSelected == false && btn_eldery.isSelected == false)
+            {
+                mList.clear()
+
+                addDataToList()
+            }
+
+            val url = "https://bwaremobileapi.azurewebsites.net/Disease/get/organ/category?category=1"
+            val request = Request.Builder().url(url).build()
+
+            println(request)
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object: Callback {
+                override fun onResponse(call: Call?, response: Response?) {
+                    val body = response?.body()?.string()
+                    // println(body)
+
+                    val listType = object : TypeToken<List<GetDiseaseResponse>>() {}.type
+                    val diseaseResponse: List<GetDiseaseResponse> = Gson().fromJson(body, listType)
+
+                    val tempList = ArrayList<LanguageData>()
+                    for (disease in diseaseResponse){
+                        println(disease.name)
+                        tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                    }
+
+                    activity?.runOnUiThread {
+                        mList.addAll(tempList)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onFailure(call: Call?, e: IOException?) {
+                    println("Failed to execute request")
+                    e?.printStackTrace()
+                }
+            })
         }
 
         btn_eldery.setOnClickListener {
             btn_eldery.isSelected = !btn_children.isSelected
             btn_adults.isSelected = false
             btn_children.isSelected = false
+
+            mList.clear()
+
+            if(btn_adults.isSelected == false && btn_children.isSelected == false && btn_eldery.isSelected == false)
+            {
+                mList.clear()
+
+                addDataToList()
+            }
+
+            val url = "https://bwaremobileapi.azurewebsites.net/Disease/get/organ/category?category=3"
+            val request = Request.Builder().url(url).build()
+
+            println(request)
+            val client = OkHttpClient()
+
+            client.newCall(request).enqueue(object: Callback {
+                override fun onResponse(call: Call?, response: Response?) {
+                    val body = response?.body()?.string()
+                    // println(body)
+
+                    val listType = object : TypeToken<List<GetDiseaseResponse>>() {}.type
+                    val diseaseResponse: List<GetDiseaseResponse> = Gson().fromJson(body, listType)
+
+                    val tempList = ArrayList<LanguageData>()
+                    for (disease in diseaseResponse){
+                        println(disease.name)
+                        tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                    }
+
+                    activity?.runOnUiThread {
+                        mList.addAll(tempList)
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+
+                override fun onFailure(call: Call?, e: IOException?) {
+                    println("Failed to execute request")
+                    e?.printStackTrace()
+                }
+            })
         }
 
 

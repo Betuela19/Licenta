@@ -34,11 +34,37 @@ class DeseasePage : AppCompatActivity() {
             override fun onResponse(call: Call?, response: Response?) {
                 val body = response?.body()?.string()
                 val diseaseResponse = Gson().fromJson(body, GetDiseaseResponse::class.java)
-                println(diseaseResponse.name)
+//                println(diseaseResponse.name)
 
                 runOnUiThread {
                     val textView = findViewById<TextView>(R.id.title_deseasePage)
                     textView?.text = diseaseResponse.name
+                    val diseaseDescription = findViewById<TextView>(R.id.diseaseDescription)
+                    diseaseDescription?.text = diseaseResponse.description
+                    val diseaseCauses = findViewById<TextView>(R.id.diseaseCauses)
+                    diseaseCauses?.text = diseaseResponse.causes
+                    val diseaseSymptoms = findViewById<TextView>(R.id.diseaseSymptoms)
+                    diseaseSymptoms?.text = diseaseResponse.symptoms
+                    val diseaseDiagnostic = findViewById<TextView>(R.id.diseaseDiagnostic)
+                    diseaseDiagnostic?.text = diseaseResponse.diagnostic
+                    val diseaseCategory = findViewById<TextView>(R.id.diseaseCategory)
+
+                    if(diseaseResponse.category == 1)
+                    {
+                        diseaseCategory?.text = "Children"
+                    }
+                    if(diseaseResponse.category == 2)
+                    {
+                        diseaseCategory?.text = "Adults"
+                    }
+                    if(diseaseResponse.category == 3)
+                    {
+                        diseaseCategory?.text = "Elderly"
+                    }
+
+                    val diseaseImportance = findViewById<TextView>(R.id.diseaseImportance)
+                    diseaseImportance?.text = diseaseResponse.importance.toString() + "%"
+
                 }
             }
 

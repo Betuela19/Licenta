@@ -58,22 +58,22 @@
                             android:textSize="20sp" />
 
                         <TextView
-                            android:id="@+id/textView21"
+                            android:id="@+id/diseaseImportance"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:fontFamily="@font/poppins_bold"
-                            android:text="20%"
+                            android:text=""
                             android:textColor="@color/primary_color"
                             android:textSize="20sp" />
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/textView22"
+                        android:id="@+id/diseaseDescription"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10sp"
                         android:fontFamily="@font/poppins"
-                        android:text="A brain tumor is a growth of cells in the brain or near it. Brain tumors can happen in the brain tissue.  "
+                        android:text=""
                         android:textColor="@color/grey"
                         android:textSize="14sp" />
 
@@ -88,11 +88,11 @@
                         android:textSize="20sp" />
 
                     <TextView
-
+                        android:id="@+id/diseaseCauses"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="Brain tumors that start as a growth of cells in the brain are called primary brain tumors. They might start right in the brain or in the tissue nearby. Nearby tissue might include the membranes that cover the brain, called meninges. Brain tumors also can happen in nerves, the pituitary gland and the pineal gland."
+                        android:text=""
                         android:textColor="@color/grey"
                         android:textSize="14sp" />
 
@@ -107,29 +107,11 @@
                         android:textSize="20sp" />
 
                     <TextView
-
+                        android:id="@+id/diseaseSymptoms"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="General signs and symptoms caused by brain tumors may include:
-
-Headache or pressure in the head that is worse in the morning.
-Headaches that happen more often and seem more severe.
-Headaches that are sometimes described as tension headaches or migraines.
-Nausea or vomiting.
-Eye problems, such as blurry vision, seeing double or losing sight on the sides of your vision.
-Losing feeling or movement in an arm or a leg.
-Trouble with balance.
-Speech problems.
-Feeling very tired.
-Confusion in everyday matters.
-Memory problems.
-Having trouble following simple commands.
-Personality or behavior changes.
-Seizures, especially if there is no history of seizures.
-Hearing problems.
-Dizziness or a sense that the world is spinning, also called vertigo.
-Feeling very hungry and gaining weight."
+                        android:text=""
                         android:textColor="@color/grey"
                         android:textSize="14sp" />
 
@@ -144,11 +126,11 @@ Feeling very hungry and gaining weight."
                         android:textSize="20sp" />
 
                     <TextView
-
+                        android:id="@+id/diseaseDiagnostic"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins"
-                        android:text="People with an increased risk of brain tumor might consider screening tests. Screening isn't brain tumor prevention. But screening might help find a brain tumor when it's small and treatment is more likely to be successful."
+                        android:text=""
                         android:textColor="@color/grey"
                         android:textSize="14sp" />
 
@@ -165,13 +147,13 @@ Feeling very hungry and gaining weight."
                     android:id="@+id/imageButton"
                     android:layout_width="100dp"
                     android:layout_height="55dp"
-                    android:layout_weight="1"
                     android:layout_marginTop="15dp"
                     android:layout_marginBottom="15dp"
+                    android:layout_weight="1"
                     android:background="@drawable/round_button"
-                    app:srcCompat="@drawable/star"
+                    android:contentDescription="Image button"
                     android:scaleType="center"
-                    android:contentDescription="Image button"/>
+                    app:srcCompat="@drawable/star" />
 
                 <Button
                     android:id="@+id/donate_btn"
@@ -213,13 +195,13 @@ Feeling very hungry and gaining weight."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="50dp"
         android:fontFamily="@font/poppins_bold"
+        android:paddingLeft="30dp"
         android:text=" "
         android:textColor="@color/third_color"
         android:textSize="20sp"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/imageView13"
         app:layout_constraintTop_toBottomOf="@+id/BackBtnDeseasePage" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -241,13 +223,13 @@ Feeling very hungry and gaining weight."
             app:srcCompat="@drawable/etiquete" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/diseaseCategory"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
             android:fontFamily="@font/poppins"
             android:gravity="left"
-            android:text="Adults"
+            android:text=""
             android:textColor="@color/third_color"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView12"
