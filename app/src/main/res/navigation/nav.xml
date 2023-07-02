@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.masterandroid.doamneaimila.SplashFragment"
+        android:name="com.masterandroid.BWareMobileApp.SplashFragment"
         android:label="fragment_splash"
         tools:layout="@layout/fragment_splash" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/viewPagerFragment"
-        android:name="com.masterandroid.doamneaimila.onboarding.ViewPagerFragment"
+        android:name="com.masterandroid.BWareMobileApp.onboarding.ViewPagerFragment"
         android:label="fragment_view_pager"
         tools:layout="@layout/fragment_view_pager" />
 </navigation>

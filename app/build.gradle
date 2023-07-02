@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace 'com.masterandroid.doamneaimila'
+    namespace 'com.masterandroid.BWareMobileApp'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.masterandroid.doamneaimila"
+        applicationId "com.masterandroid.BWareMobileApp"
         minSdk 31
         targetSdk 33
         versionCode 1
