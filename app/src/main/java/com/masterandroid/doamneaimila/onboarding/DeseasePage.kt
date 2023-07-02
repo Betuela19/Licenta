@@ -34,7 +34,7 @@ class DeseasePage : AppCompatActivity() {
             override fun onResponse(call: Call?, response: Response?) {
                 val body = response?.body()?.string()
                 val diseaseResponse = Gson().fromJson(body, GetDiseaseResponse::class.java)
-//                println(diseaseResponse.name)
+                println(diseaseResponse.name)
 
                 runOnUiThread {
                     val textView = findViewById<TextView>(R.id.title_deseasePage)
