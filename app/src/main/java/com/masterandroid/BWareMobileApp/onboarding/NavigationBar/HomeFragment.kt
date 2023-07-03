@@ -1,19 +1,25 @@
 package com.masterandroid.BWareMobileApp.onboarding.NavigationBar
 
+import LanguageAdapterOrgans
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 import com.masterandroid.BWareMobileApp.*
 import com.masterandroid.BWareMobileApp.onboarding.CostumBottomNavBar
+import com.masterandroid.BWareMobileApp.onboarding.DeseasePage
 import com.masterandroid.BWareMobileApp.onboarding.NewsPage
+import okhttp3.*
 import java.io.BufferedReader
+import java.io.IOException
 import java.io.InputStreamReader
 import java.net.HttpURLConnection
 import java.net.URL
@@ -23,7 +29,11 @@ import java.util.ArrayList
 class HomeFragment : Fragment() {
     private lateinit var binding: HomeFragment
     private lateinit var saved_items: TextView
+    private lateinit var get_started: Button
     private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView2: RecyclerView
+    private var mList2 = ArrayList<GetOrganTitle>()
+    private lateinit var adapter2: LanguageAdapterOrgans
     private var mList = ArrayList<LanguageDataNews>()
     private lateinit var adapter: LanguageAdapterNews
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,6 +48,67 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
+
+        recyclerView2 = view.findViewById(R.id.horizontalRecyclerView)
+        recyclerView2.setOnClickListener{
+            navigateToOtherActivity(2)
+        }
+
+        var itemList = mutableListOf<GetOrganTitle>(
+
+        // Add more items as needed
+        )
+
+        var tempList = ArrayList<GetOrganTitle>()
+        val url = "https://bwaremobileapi.azurewebsites.net/Organ/get/all"
+        val request = Request.Builder().url(url).build()
+
+        println(request)
+        val client2 = OkHttpClient()
+
+        client2.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?) {
+                val body = response?.body()?.string()
+                // println(body)
+
+                val listType = object : TypeToken<List<GetOrganTitle>>() {}.type
+                val diseaseResponse: List<GetOrganTitle> = Gson().fromJson(body, listType)
+
+                for (disease in diseaseResponse) {
+                    println(disease.name)
+                    tempList.add(GetOrganTitle(disease.id, disease.name))
+                }
+
+                activity?.runOnUiThread {
+                    itemList.addAll(tempList)
+                    adapter2.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                println("Failed to execute request")
+                e?.printStackTrace()
+            }
+        })
+
+       // itemList.addAll(tempList)
+
+        adapter2 = LanguageAdapterOrgans(itemList) { selectedLanguage ->
+            val position = itemList.indexOf(selectedLanguage)
+            println(selectedLanguage.name)
+            val intent = Intent(requireContext(), CostumBottomNavBar::class.java)
+            intent.putExtra("selectedItem", 2) // Set the selected item to 3 (FavouritesFragment)
+            intent.putExtra("id", position)
+            intent.putExtra("organName", selectedLanguage.name)
+            startActivity(intent)
+            requireActivity().finish()
+        }
+
+
+        recyclerView2.adapter = adapter2
+
+        recyclerView2.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
 
         recyclerView = view.findViewById(R.id.recyclerView_HomePage)
@@ -73,11 +144,6 @@ class HomeFragment : Fragment() {
             navigateToOtherActivity(3)
         }
 
-        val getStartedBtn = view.findViewById<View>(R.id.get_started_button)
-        getStartedBtn.setOnClickListener{
-            navigateToOtherActivity(2)
-        }
-
         return view
     }
 
@@ -93,8 +159,6 @@ class HomeFragment : Fragment() {
         mList.add(LanguageDataNews("The race to make hospitals cybersecure",
             "As medical centres increasingly come under attack from hackers, Europe is bolstering protection.",
             R.drawable.ic_article))
-
-
     }
 
     private fun performNetworkOperation(): String {

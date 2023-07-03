@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:fontFamily="@font/poppins_bold"
-        android:text="@string/brain_search"
+        android:text="Select a disease"
         android:textColor="@color/third_color"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"

@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,12 +17,14 @@ import com.masterandroid.BWareMobileApp.onboarding.Results
 import okhttp3.*
 import java.io.IOException
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ArticlesFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
     private lateinit var searchView: ImageButton
+    private lateinit var textView: TextView
     private var mList = ArrayList<LanguageData>()
     private lateinit var adapter: LanguageAdapter
 
@@ -39,11 +42,29 @@ class ArticlesFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_article, container, false)
 
+        //get disease for filter
+        textView = view.findViewById<TextView>(R.id.deseaseName)
+        //
+
+        val extras = requireActivity().intent.extras
+
+        if(extras != null)
+        {
+            val value: String = extras.getSerializable("id").toString()
+
+            if(value != null){
+                val intValue: Int = value.toInt()
+                val organName: String = extras.getSerializable("organName").toString()
+                println(intValue)
+                val textView = view.findViewById<TextView>(R.id.deseaseName)
+                textView?.text = organName
+            }
+        }
+
         recyclerView = view.findViewById(R.id.recyclerViewbeti)
         searchView = view.findViewById(R.id.searchBtn)
 
-
-       recyclerView.setHasFixedSize(true)
+        recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         addDataToList()
 
@@ -94,7 +115,7 @@ class ArticlesFragment : Fragment() {
             println(request)
             val client = OkHttpClient()
 
-            client.newCall(request).enqueue(object: Callback {
+           client.newCall(request).enqueue(object: Callback {
                 override fun onResponse(call: Call?, response: Response?) {
                     val body = response?.body()?.string()
                     // println(body)
@@ -239,8 +260,17 @@ private fun addDataToList() {
 
                 val tempList = ArrayList<LanguageData>()
                 for (disease in diseaseResponse){
-                    println(disease.name)
-                    tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                    //println(disease.name)
+
+                    if(disease.organ.equals(textView.text))
+                    {
+                        tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                    }
+
+                    if(textView.text.equals("Select a disease"))
+                    {
+                        tempList.add(LanguageData(disease.name, R.drawable.ic_article))
+                    }
                 }
 
                 activity?.runOnUiThread {
