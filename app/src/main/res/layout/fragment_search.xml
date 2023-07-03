@@ -60,13 +60,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-
+                android:id="@+id/recentlyViewed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="4 articles"
+                android:text=""
                 android:textColor="@color/third_color"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -116,13 +116,13 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-
+                android:id="@+id/addedToday"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="3dp"
                 android:fontFamily="@font/poppins_bold"
-                android:text="2 articles"
+                android:text=""
                 android:textColor="@color/third_color"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"

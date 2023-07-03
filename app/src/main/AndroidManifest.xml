@@ -15,6 +15,9 @@
         android:theme="@style/Theme.BWareMobileApp"
         tools:targetApi="31">
         <activity
+            android:name=".onboarding.TipsPage"
+            android:exported="false" />
+        <activity
             android:name=".onboarding.NewsPage"
             android:exported="false" />
         <activity

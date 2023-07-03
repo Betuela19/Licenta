@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.masterandroid.BWareMobileApp.*
+import com.masterandroid.BWareMobileApp.onboarding.CostumBottomNavBar
 import com.masterandroid.BWareMobileApp.onboarding.DeseasePage
 import com.masterandroid.BWareMobileApp.onboarding.Results
 import okhttp3.*
@@ -23,10 +24,13 @@ import kotlin.collections.ArrayList
 class ArticlesFragment : Fragment() {
 
     private lateinit var recyclerView: RecyclerView
+    private lateinit var recyclerView2: RecyclerView
     private lateinit var searchView: ImageButton
     private lateinit var textView: TextView
     private var mList = ArrayList<LanguageData>()
     private lateinit var adapter: LanguageAdapter
+    private lateinit var adapter2: LanguageAdapterOrgansArticle
+    private var mList2 = java.util.ArrayList<GetOrganTitle>()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -57,6 +61,8 @@ class ArticlesFragment : Fragment() {
                 val organName: String = extras.getSerializable("organName").toString()
                 println(intValue)
                 val textView = view.findViewById<TextView>(R.id.deseaseName)
+                val textView2 = view.findViewById<Button>(R.id.organNameArticles)
+                textView2?.text = organName
                 textView?.text = organName
             }
         }
@@ -68,6 +74,7 @@ class ArticlesFragment : Fragment() {
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         addDataToList()
 
+
         adapter = LanguageAdapter(mList) { selectedLanguage ->
             val position = mList.indexOf(selectedLanguage)
             println(selectedLanguage.title)
@@ -77,6 +84,62 @@ class ArticlesFragment : Fragment() {
         }
 
         recyclerView.adapter = adapter
+
+        var itemList = mutableListOf<GetOrganTitle>(
+
+        )
+
+        var tempList = java.util.ArrayList<GetOrganTitle>()
+        val url = "https://bwaremobileapi.azurewebsites.net/Organ/get/all"
+        val request = Request.Builder().url(url).build()
+
+        println(request)
+        val client2 = OkHttpClient()
+
+        client2.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?) {
+                val body = response?.body()?.string()
+                // println(body)
+
+                val listType = object : TypeToken<List<GetOrganTitle>>() {}.type
+                val diseaseResponse: List<GetOrganTitle> = Gson().fromJson(body, listType)
+
+                for (disease in diseaseResponse) {
+                    println(disease.name)
+                    tempList.add(GetOrganTitle(disease.id, disease.name))
+                }
+
+                activity?.runOnUiThread {
+                    itemList.addAll(tempList)
+                    adapter2.notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                println("Failed to execute request")
+                e?.printStackTrace()
+            }
+        })
+
+        recyclerView2 = view.findViewById(R.id.horizontalRecyclerViewArticles)
+
+        recyclerView2.setHasFixedSize(true)
+
+
+        adapter2 = LanguageAdapterOrgansArticle(itemList) { selectedLanguage ->
+            val position = itemList.indexOf(selectedLanguage)
+            println(selectedLanguage.name)
+            val intent = Intent(requireContext(), CostumBottomNavBar::class.java)
+            intent.putExtra("selectedItem", 2) // Set the selected item to 3 (FavouritesFragment)
+            intent.putExtra("id", position)
+            intent.putExtra("organName", selectedLanguage.name)
+            startActivity(intent)
+            requireActivity().finish()
+        }
+
+        recyclerView2.adapter = adapter2
+        recyclerView2.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         searchView.setOnClickListener{
             navigateToOtherActivity()
@@ -241,7 +304,6 @@ class ArticlesFragment : Fragment() {
         return view
     }
 
-
 private fun addDataToList() {
 
         val url = "https://bwaremobileapi.azurewebsites.net/Disease/get/all"
@@ -285,6 +347,8 @@ private fun addDataToList() {
             }
         })
     }
+
+
 
     private fun navigateToOtherActivity() {
         val intent = Intent(requireContext(), Results::class.java)

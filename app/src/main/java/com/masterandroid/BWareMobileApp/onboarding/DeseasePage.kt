@@ -2,15 +2,18 @@ package com.masterandroid.BWareMobileApp.onboarding
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.masterandroid.BWareMobileApp.GetDiseaseResponse
 import com.masterandroid.BWareMobileApp.R
 import okhttp3.*
 import java.io.IOException
+
 
 class DeseasePage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -96,5 +99,35 @@ class DeseasePage : AppCompatActivity() {
         finish()
     }
 
+    fun onCustomToggleClick(view: View?) {
+            updateArticleList()
+    }
+
+    private fun updateArticleList() {
+        val url = "https://bwaremobileapi.azurewebsites.net/ArticleList/added/today"
+
+        val queryUrl = HttpUrl.parse(url)?.newBuilder()
+            ?.addQueryParameter("userId", "1")
+            ?.build()
+
+        val request = Request.Builder()
+            .url(queryUrl)
+            .post(RequestBody.create(null, ""))
+            .build()
+
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?) {
+                val body = response?.body()?.string()
+                // Handle the response body as needed
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                println("Failed to execute request")
+                e?.printStackTrace()
+            }
+        })
+    }
 
 }

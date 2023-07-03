@@ -111,7 +111,7 @@
              android:layout_marginStart="4dp"
              android:layout_marginTop="28dp"
              android:fontFamily="@font/poppins_bold"
-             android:text="4 articles"
+             android:text=""
              android:textColor="@color/third_color"
              android:textSize="20sp"
              app:layout_constraintStart_toStartOf="parent"

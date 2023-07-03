@@ -163,7 +163,7 @@ class HomeFragment : Fragment() {
 
     private fun performNetworkOperation(): String {
         // Your network operation code goes here
-        val url = URL("https://app-form-recognizer-prod-01.azurewebsites.net/api/azure/formrecognizer/kotlin")
+        val url = URL("https://bwaremobileapi.azurewebsites.net/ArticleList/get/recently/viewed?userId="+1)
         val connection = url.openConnection() as HttpURLConnection
         connection.requestMethod = "GET"
         val inputStream = connection.inputStream
@@ -183,9 +183,9 @@ class HomeFragment : Fragment() {
         // Update the UI with the network result
 
         val textView = view?.findViewById<TextView>(R.id.Articles)
-        val test = Gson().fromJson(result , TestModel::class.java)
-        textView?.text = test.test
-        println("test : " + test.test)
+        val test = Gson().fromJson(result , ArticleListResponse::class.java)
+        textView?.text = test.recentlyViewed.toString() + " articles"
+        println("test : " + test.recentlyViewed)
         //println("json" + json)
     }
 

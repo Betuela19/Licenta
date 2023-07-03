@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import okhttp3.*
+import java.io.IOException
 
 class LanguageAdapter(
     private var mList: List<LanguageData>,
@@ -23,6 +25,7 @@ class LanguageAdapter(
                     val languageData = mList[position]
                     onItemClick(languageData)
                 }
+                updateArticleList()
             }
         }
     }
@@ -51,5 +54,32 @@ class LanguageAdapter(
 
     override fun getItemCount(): Int {
         return mList.size
+    }
+
+    private fun updateArticleList() {
+        val url = "https://bwaremobileapi.azurewebsites.net/ArticleList/recently/viewed"
+
+        val queryUrl = HttpUrl.parse(url)?.newBuilder()
+            ?.addQueryParameter("userId", "1")
+            ?.build()
+
+        val request = Request.Builder()
+            .url(queryUrl)
+            .post(RequestBody.create(null, ""))
+            .build()
+
+        val client = OkHttpClient()
+
+        client.newCall(request).enqueue(object: Callback {
+            override fun onResponse(call: Call?, response: Response?) {
+                val body = response?.body()?.string()
+                // Handle the response body as needed
+            }
+
+            override fun onFailure(call: Call?, e: IOException?) {
+                println("Failed to execute request")
+                e?.printStackTrace()
+            }
+        })
     }
 }
