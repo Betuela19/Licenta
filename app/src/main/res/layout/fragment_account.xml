@@ -31,7 +31,7 @@
             android:id="@+id/constraintLayout"
             android:layout_width="match_parent"
             android:layout_height="360dp"
-            android:background="@drawable/grad"
+            android:background="@drawable/round_button_primary_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -275,11 +275,11 @@
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
                 <TextView
-                    android:id="@+id/SettingsAndPrivacy"
+                    android:id="@+id/GiveFeedback"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins"
-                    android:text="Settings and Privacy"
+                    android:text="Give feedback"
                     android:textColor="@color/third_color"
                     android:textSize="16sp"
                     android:textStyle="bold" />

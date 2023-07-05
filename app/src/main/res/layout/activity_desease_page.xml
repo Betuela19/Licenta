@@ -145,12 +145,12 @@
 
                 <ToggleButton
                     android:id="@+id/toggle_btn"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="58dp"
+                    android:layout_height="58dp"
                     android:layout_alignParentStart="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="2dp"
+                    android:layout_marginBottom="10dp"
                     android:background="@drawable/toggle_favourites"
                     android:onClick="onCustomToggleClick"
                     android:textOff=""
@@ -160,15 +160,16 @@
                     android:id="@+id/donate_btn"
                     android:layout_width="270dp"
                     android:layout_height="55dp"
-                    android:layout_marginStart="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginStart="30dp"
                     android:layout_marginTop="15dp"
                     android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="15dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/round_button_primary_color"
                     android:fontFamily="@font/poppins"
-                    android:text="Doneaza"
-                    android:textStyle="bold"
-                    android:layout_toEndOf="@+id/toggle_btn" />
+                    android:text="Donate"
+                    android:textStyle="bold" />
             </RelativeLayout>
 
         </LinearLayout>
@@ -177,8 +178,8 @@
 
     <ImageView
         android:id="@+id/imageView9"
-        android:layout_width="162dp"
-        android:layout_height="180dp"
+        android:layout_width="143dp"
+        android:layout_height="176dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/idea" />
@@ -197,15 +198,13 @@
         android:id="@+id/title_deseasePage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="70dp"
         android:fontFamily="@font/poppins_bold"
-        android:paddingLeft="30dp"
-        android:text=" "
         android:textColor="@color/third_color"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
-        app:layout_constraintStart_toStartOf="@+id/imageView13"
-        app:layout_constraintTop_toBottomOf="@+id/BackBtnDeseasePage" />
+        android:textSize="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
@@ -213,7 +212,8 @@
         android:layout_marginStart="-85dp"
         app:layout_constraintEnd_toStartOf="@+id/imageView9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/title_deseasePage">
+        app:layout_constraintTop_toBottomOf="@+id/title_deseasePage"
+        tools:layout_editor_absoluteY="99dp">
 
         <ImageView
             android:id="@+id/imageView12"

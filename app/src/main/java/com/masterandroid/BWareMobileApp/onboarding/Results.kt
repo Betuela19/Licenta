@@ -4,8 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -38,9 +40,12 @@ class Results : AppCompatActivity() {
         recyclerView.setHasFixedSize(true)
         recyclerView.layoutManager = LinearLayoutManager(this)
         addDataToList()
+
         adapter = LanguageAdapter(mList) { selectedLanguage ->
-            // Handle item click event here
+            val position = mList.indexOf(selectedLanguage)
+            println(selectedLanguage.title)
             val intent = Intent(this, DeseasePage::class.java)
+            intent.putExtra("position", position)
             startActivity(intent)
         }
 

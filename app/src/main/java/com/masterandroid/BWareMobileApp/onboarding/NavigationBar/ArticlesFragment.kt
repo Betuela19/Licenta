@@ -15,6 +15,7 @@ import com.masterandroid.BWareMobileApp.*
 import com.masterandroid.BWareMobileApp.onboarding.CostumBottomNavBar
 import com.masterandroid.BWareMobileApp.onboarding.DeseasePage
 import com.masterandroid.BWareMobileApp.onboarding.Results
+import com.masterandroid.BWareMobileApp.onboarding.TipsPage
 import okhttp3.*
 import java.io.IOException
 import java.util.*
@@ -52,11 +53,11 @@ class ArticlesFragment : Fragment() {
 
         val extras = requireActivity().intent.extras
 
-        if(extras != null)
+        if(extras != null && extras.getSerializable("id") != null)
         {
             val value: String = extras.getSerializable("id").toString()
 
-            if(value != null){
+            if(value != null ){
                 val intValue: Int = value.toInt()
                 val organName: String = extras.getSerializable("organName").toString()
                 println(intValue)
@@ -300,6 +301,12 @@ class ArticlesFragment : Fragment() {
             })
         }
 
+        val btn_tips = view.findViewById<ImageButton>(R.id.tipsBtn)
+        btn_tips.setOnClickListener{
+            val intent = Intent(requireContext(), TipsPage::class.java)
+            startActivity(intent)
+            requireActivity().finish()
+        }
 
         return view
     }
